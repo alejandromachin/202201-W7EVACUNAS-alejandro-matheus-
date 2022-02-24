@@ -25,4 +25,42 @@ const userChoices = () =>
       });
   });
 
-module.exports = userChoices;
+const datosPersona = (centrosVacunacion) =>
+  new Promise((resolve) => {
+    inquirer
+      .prompt([
+        {
+          name: "nombre",
+          message: "Nombre",
+          type: "input",
+        },
+        {
+          name: "dni",
+          message: "DNI",
+          type: "input",
+        },
+        {
+          name: "centroDeVacunacion",
+          message: "Centro de vacunación",
+          type: "list",
+          choices: [centrosVacunacion],
+        },
+        {
+          name: "vacunas",
+          message: "Centro de vacunación",
+          type: "list",
+          when: (answers) =>
+            answers.name === "Sant Isidor- Centre vacunal CAPSBE",
+          choices: ["hola", "adios"],
+        },
+      ])
+      .then(({ nombre, dni, centroDeVacunacion }) => {
+        resolve({
+          nombre,
+          dni,
+          centroDeVacunacion,
+        });
+      });
+  });
+
+module.exports = { userChoices, datosPersona };
