@@ -6,7 +6,7 @@ const ciudadSchema = new Schema({
     required: true,
   },
   puntosVacunacion: {
-    type: [Schema.Types.ObjectId],
+    type: [Array],
   },
 });
 
